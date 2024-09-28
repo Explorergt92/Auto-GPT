@@ -30,7 +30,7 @@ export async function login(values: z.infer<typeof loginFormSchema>) {
     }
 
     revalidatePath("/", "layout");
-    redirect("/profile");
+    redirect("/");
   });
 }
 
@@ -50,6 +50,9 @@ export async function signup(values: z.infer<typeof loginFormSchema>) {
       const { data, error } = await supabase.auth.signUp(values);
 
       if (error) {
+        if (error.message.includes("P0001")) {
+          return "Please join our waitlist for your turn: https://agpt.co/waitlist";
+        }
         return error.message;
       }
 
@@ -58,7 +61,7 @@ export async function signup(values: z.infer<typeof loginFormSchema>) {
       }
 
       revalidatePath("/", "layout");
-      redirect("/profile");
+      redirect("/");
     },
   );
 }

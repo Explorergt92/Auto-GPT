@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { IconRefresh } from "@/components/ui/icons";
+import { IconRefresh, IconCoin } from "@/components/ui/icons";
 import AutoGPTServerAPI from "@/lib/autogpt-server-api";
 
 export default function CreditButton() {
@@ -22,9 +22,11 @@ export default function CreditButton() {
       <Button
         onClick={fetchCredit}
         variant="outline"
-        className="flex items-center space-x-2 text-muted-foreground"
+        className="flex items-center space-x-2 rounded-xl bg-gray-200"
       >
-        <span>Credits: {credit}</span>
+        <span className="mr-2 flex items-center text-foreground">
+          {credit} <span className="ml-2 text-muted-foreground"> credits</span>
+        </span>
         <IconRefresh />
       </Button>
     )

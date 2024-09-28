@@ -302,6 +302,34 @@ export const IconRefresh = createIcon((props) => (
 ));
 
 /**
+ * Coin icon component.
+ *
+ * @component IconCoin
+ * @param {IconProps} props - The props object containing additional attributes and event handlers for the icon.
+ * @returns {JSX.Element} - The coins icon.
+ *
+ */
+export const IconCoin = createIcon((props) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    {...props}
+  >
+    <circle cx="8" cy="8" r="6" />
+    <path d="M18.09 10.37A6 6 0 1 1 10.34 18" />
+    <path d="M7 6h1v4" />
+    <path d="m16.71 13.88.7.71-2.82 2.82" />
+  </svg>
+));
+
+/**
  * Menu icon component.
  *
  * @component IconMenu
@@ -544,6 +572,150 @@ export const IconMegaphone = createIcon((props) => (
   >
     <path d="m3 11 18-5v12L3 14v-3z" />
     <path d="M11.6 16.8a3 3 0 1 1-5.8-1.6" />
+  </svg>
+));
+
+/**
+ * Key icon component.
+ *
+ * @component IconKey
+ * @param {IconProps} props - The props object containing additional attributes and event handlers for the icon.
+ * @returns {JSX.Element} - The key icon.
+ *
+ * @example
+ * // Default usage
+ * <IconKey />
+ *
+ * @example
+ * // With custom color and size
+ * <IconKey className="text-primary" size="lg" />
+ *
+ * @example
+ * // With custom size and onClick handler
+ * <IconKey size="sm" onClick={handleOnClick} />
+ */
+export const IconKey = createIcon((props) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    {...props}
+  >
+    <path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z" />
+    <circle cx="16.5" cy="7.5" r=".5" fill="currentColor" />
+  </svg>
+));
+
+/**
+ * Key(+) icon component.
+ *
+ * @component IconKeyPlus
+ * @param {IconProps} props - The props object containing additional attributes and event handlers for the icon.
+ * @returns {JSX.Element} - The key(+) icon.
+ *
+ * @example
+ * // Default usage
+ * <IconKeyPlus />
+ *
+ * @example
+ * // With custom color and size
+ * <IconKeyPlus className="text-primary" size="lg" />
+ *
+ * @example
+ * // With custom size and onClick handler
+ * <IconKeyPlus size="sm" onClick={handleOnClick} />
+ */
+export const IconKeyPlus = createIcon((props) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    {...props}
+  >
+    <path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z" />
+    {/* <circle cx="16.5" cy="7.5" r=".5" fill="currentColor" /> */}
+    <line x1="15.6" x2="15.6" y1="5.4" y2="11.4" />
+    <line x1="12.6" x2="18.6" y1="8.4" y2="8.4" />
+  </svg>
+));
+
+/**
+ * User icon component.
+ *
+ * @component IconUser
+ * @param {IconProps} props - The props object containing additional attributes and event handlers for the icon.
+ * @returns {JSX.Element} - The user icon.
+ *
+ * @example
+ * // Default usage
+ * <IconUser />
+ *
+ * @example
+ * // With custom color and size
+ * <IconUser className="text-primary" size="lg" />
+ *
+ * @example
+ * // With custom size and onClick handler
+ * <IconUser size="sm" onClick={handleOnClick} />
+ */
+export const IconUser = createIcon((props) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    {...props}
+  >
+    <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+    <circle cx="12" cy="7" r="4" />
+  </svg>
+));
+
+/**
+ * User(+) icon component.
+ *
+ * @component IconUserPlus
+ * @param {IconProps} props - The props object containing additional attributes and event handlers for the icon.
+ * @returns {JSX.Element} - The user plus icon.
+ *
+ * @example
+ * // Default usage
+ * <IconUserPlus />
+ *
+ * @example
+ * // With custom color and size
+ * <IconUserPlus className="text-primary" size="lg" />
+ *
+ * @example
+ * // With custom size and onClick handler
+ * <IconUserPlus size="sm" onClick={handleOnClick} />
+ */
+export const IconUserPlus = createIcon((props) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    {...props}
+  >
+    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+    <circle cx="9" cy="7" r="4" />
+    <line x1="19" x2="19" y1="8" y2="14" />
+    <line x1="22" x2="16" y1="11" y2="11" />
   </svg>
 ));
 

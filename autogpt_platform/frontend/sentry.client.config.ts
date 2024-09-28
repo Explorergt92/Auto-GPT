@@ -7,6 +7,8 @@ import * as Sentry from "@sentry/nextjs";
 Sentry.init({
   dsn: "https://fe4e4aa4a283391808a5da396da20159@o4505260022104064.ingest.us.sentry.io/4507946746380288",
 
+  enabled: process.env.DISABLE_SENTRY !== "true",
+
   // Add optional integrations for additional features
   integrations: [
     Sentry.replayIntegration(),
@@ -28,14 +30,6 @@ Sentry.init({
     "localhost",
     /^https:\/\/dev\-builder\.agpt\.co\/api/,
   ],
-
-  beforeSend(event, hint) {
-    // Check if it is an exception, and if so, show the report dialog
-    if (event.exception && event.event_id) {
-      Sentry.showReportDialog({ eventId: event.event_id });
-    }
-    return event;
-  },
 
   // Define how likely Replay events are sampled.
   // This sets the sample rate to be 10%. You may want this to be 100% while

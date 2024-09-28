@@ -33,6 +33,7 @@ import { getPrimaryCategoryColor } from "@/lib/utils";
 import { FlowContext } from "./Flow";
 import { Badge } from "./ui/badge";
 import DataTable from "./DataTable";
+import { IconCoin } from "./ui/icons";
 
 type ParsedKey = { key: string; index?: number };
 
@@ -254,13 +255,19 @@ export function CustomNode({ data, id, width, height }: NodeProps<CustomNode>) {
           return (
             (isRequired || isAdvancedOpen || isConnected || !isAdvanced) && (
               <div key={propKey} onMouseOver={() => {}}>
-                <NodeHandle
-                  keyName={propKey}
-                  isConnected={isConnected}
-                  isRequired={isRequired}
-                  schema={propSchema}
-                  side="left"
-                />
+                {"credentials_provider" in propSchema ? (
+                  <span className="text-m green -mb-1 text-gray-900">
+                    Credentials
+                  </span>
+                ) : (
+                  <NodeHandle
+                    keyName={propKey}
+                    isConnected={isConnected}
+                    isRequired={isRequired}
+                    schema={propSchema}
+                    side="left"
+                  />
+                )}
                 {!isConnected && (
                   <NodeGenericInputField
                     className="mb-2 mt-1"
@@ -533,7 +540,6 @@ export function CustomNode({ data, id, width, height }: NodeProps<CustomNode>) {
           value === inputValues[key] || (!value && !inputValues[key]),
       ),
     );
-  console.debug(`Block cost ${inputValues}|${data.blockCosts}=${blockCost}`);
 
   return (
     <div
@@ -577,8 +583,10 @@ export function CustomNode({ data, id, width, height }: NodeProps<CustomNode>) {
         </div>
       </div>
       {blockCost && (
-        <div className="p-3 text-right font-semibold">
-          Cost: {blockCost.cost_amount} / {blockCost.cost_type}
+        <div className="p-3 font-semibold">
+          <span className="ml-auto flex items-center">
+            <IconCoin /> {blockCost.cost_amount} credits/{blockCost.cost_type}
+          </span>
         </div>
       )}
       {data.uiType !== BlockUIType.NOTE ? (

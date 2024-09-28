@@ -1,4 +1,5 @@
 import inspect
+import logging
 from collections import defaultdict
 from contextlib import asynccontextmanager
 from functools import wraps
@@ -27,6 +28,7 @@ from backend.util.settings import Config, Settings
 from .utils import get_user_id
 
 settings = Settings()
+logger = logging.getLogger(__name__)
 
 
 class AgentServer(AppService):
@@ -65,9 +67,13 @@ class AgentServer(AppService):
         if self._test_dependency_overrides:
             app.dependency_overrides.update(self._test_dependency_overrides)
 
+        logger.debug(
+            f"FastAPI CORS allow origins: {Config().backend_cors_allow_origins}"
+        )
+
         app.add_middleware(
             CORSMiddleware,
-            allow_origins=["*"],  # Allows all origins
+            allow_origins=Config().backend_cors_allow_origins,
             allow_credentials=True,
             allow_methods=["*"],  # Allows all methods
             allow_headers=["*"],  # Allows all headers
@@ -251,7 +257,12 @@ class AgentServer(AppService):
 
         app.include_router(api_router)
 
-        uvicorn.run(app, host="0.0.0.0", port=Config().agent_api_port, log_config=None)
+        uvicorn.run(
+            app,
+            host=Config().agent_api_host,
+            port=Config().agent_api_port,
+            log_config=None,
+        )
 
     def set_test_dependency_overrides(self, overrides: dict):
         self._test_dependency_overrides = overrides
@@ -326,9 +337,13 @@ class AgentServer(AppService):
 
     @classmethod
     async def get_graphs(
-        cls, user_id: Annotated[str, Depends(get_user_id)]
+        cls,
+        user_id: Annotated[str, Depends(get_user_id)],
+        with_runs: bool = False,
     ) -> list[graph_db.GraphMeta]:
-        return await graph_db.get_graphs_meta(filter_by="active", user_id=user_id)
+        return await graph_db.get_graphs_meta(
+            include_executions=with_runs, filter_by="active", user_id=user_id
+        )
 
     @classmethod
     async def get_templates(cls) -> list[graph_db.GraphMeta]:
